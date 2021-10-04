@@ -11,20 +11,20 @@ PASSWORD = "staffjoydev"
 FILE = "/vagrant/user.txt"
 with app.app_context():
     if not os.path.isfile(FILE):
-        print "READ THE README! You're missing a user.txt file"
+        print("READ THE README! You're missing a user.txt file")
         os.exit(1)
 
     with open(FILE, "r") as f:
         user_email = f.read().strip()
 
     if len(user_email) == 0:
-        print "You did not provide your email!"
-        print "READ THE README! Put it in user.txt!"
+        print("You did not provide your email!")
+        print("READ THE README! Put it in user.txt!")
         os.exit(1)
 
     if "@" not in user_email:
-        print "Invalid email."
-        print "READ THE README!"
+        print("Invalid email.")
+        print("READ THE README!")
         os.exit(1)
 
     # See if the user exists. If not, make it and make it sudo.
@@ -52,5 +52,5 @@ with app.app_context():
         db.session.add(root)		
 
     db.session.commit()
-    print "Check your email to activate your sudo account, then use free trial to set up an org"
+    print("Check your email to activate your sudo account, then use free trial to set up an org")
 
