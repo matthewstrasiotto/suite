@@ -72,7 +72,7 @@ class FreeTrialForm(Form):
 
     plan = SelectField(
         "Type of Workers",
-        choices=[(key, value["for"]) for key, value in plans.iteritems()
+        choices=[(key, value["for"]) for key, value in plans.items()
                  if value["active"]],
         validators=[Required()], )
 
