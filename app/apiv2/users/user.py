@@ -17,7 +17,7 @@ class UserApi(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("archived", type=inputs.boolean)
         args = parser.parse_args()
-        args = dict((k, v) for k, v in args.iteritems() if v is not None)
+        args = dict((k, v) for k, v in args.items() if v is not None)
 
         response = {
             API_ENVELOPE: {},
@@ -28,9 +28,7 @@ class UserApi(Resource):
         user = User.query.get_or_404(user_id)
 
         response[API_ENVELOPE] = marshal(user, user_fields)
-        response["organization_admin"] = map(
-            lambda organization: marshal(organization, organization_fields),
-            user.admin_of.all())
+        response["organization_admin"] = [marshal(organization, organization_fields) for organization in user.admin_of.all()]
 
         response["location_manager"] = []
         for location in user.manager_of.all():
@@ -79,10 +77,10 @@ class UserApi(Resource):
 
         changes = parser.parse_args(strict=True)
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
         # Filter some values to lowercase, etc
         changes = dict(
-            map(lambda (k, v): (k, user_filter(k, v)), changes.iteritems()))
+            [(k_v[0], user_filter(k_v[0], k_v[1])) for k_v in iter(changes.items())])
 
         user = User.query.get_or_404(user_id)
 
@@ -95,16 +93,16 @@ class UserApi(Resource):
             user.send_activation_reminder(user)
             del changes["activateReminder"]
 
-        if "sudo" in changes.keys():
+        if "sudo" in list(changes.keys()):
             allowed = "@staffjoy.com"
             if user.email[-len(allowed):] != allowed:
                 abort(400)
 
-        if "email" in changes.keys():
+        if "email" in list(changes.keys()):
             if not valid_email(changes['email']):
                 abort(400)
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             if value is not None:
                 try:
                     setattr(user, change, value)

@@ -19,7 +19,7 @@ class CacheApi(Resource):
 
     def get(self, cache_key):
         """View number of active keys in cache"""
-        if cache_key not in KEY_TO_CACHES.keys():
+        if cache_key not in list(KEY_TO_CACHES.keys()):
             abort(404)
 
         count = 0
@@ -30,7 +30,7 @@ class CacheApi(Resource):
 
     def delete(self, cache_key):
         """Flush target cache"""
-        if cache_key not in KEY_TO_CACHES.keys():
+        if cache_key not in list(KEY_TO_CACHES.keys()):
             abort(404)
 
         for cache in KEY_TO_CACHES[cache_key]:

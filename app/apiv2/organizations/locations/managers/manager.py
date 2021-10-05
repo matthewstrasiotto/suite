@@ -65,7 +65,7 @@ class LocationManagerApi(Resource):
         changes = parser.parse_args(strict=True)
 
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         if len(changes) == 0:
             return {}, 204

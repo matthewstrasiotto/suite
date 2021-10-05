@@ -26,7 +26,7 @@ class LocationShiftsApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         org = Organization.query.get_or_404(org_id)
@@ -100,5 +100,5 @@ class LocationShiftsApi(Resource):
 
         return {
             API_ENVELOPE:
-            map(lambda shift: marshal(shift, shift_fields), shifts.all())
+            [marshal(shift, shift_fields) for shift in shifts.all()]
         }

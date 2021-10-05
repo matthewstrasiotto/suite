@@ -21,7 +21,7 @@ class RolesApi(Resource):
         parser.add_argument("recurse", type=inputs.boolean, default=False)
         parser.add_argument("archived", type=inputs.boolean)
         args = parser.parse_args()
-        args = dict((k, v) for k, v in args.iteritems() if v is not None)
+        args = dict((k, v) for k, v in args.items() if v is not None)
 
         roles_query = Role.query.filter_by(location_id=location_id)
 
@@ -30,8 +30,7 @@ class RolesApi(Resource):
             roles_query = roles_query.filter_by(archived=args["archived"])
 
         roles = roles_query.all()
-        response[API_ENVELOPE] = map(lambda role: marshal(role, role_fields),
-                                     roles)
+        response[API_ENVELOPE] = [marshal(role, role_fields) for role in roles]
 
         if args["recurse"]:
 
@@ -69,7 +68,7 @@ class RolesApi(Resource):
         parameters = parser.parse_args(strict=True)
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         organization = Organization.query.get_or_404(org_id)

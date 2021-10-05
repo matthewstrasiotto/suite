@@ -45,7 +45,7 @@ class TimeOffRequestApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
         changes = {}
 
@@ -111,7 +111,7 @@ class TimeOffRequestApi(Resource):
         if "minutes_paid" in parameters:
             changes["minutes_paid"] = parameters["minutes_paid"]
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             try:
                 setattr(time_off_request, change, value)
                 db.session.commit()

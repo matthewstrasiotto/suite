@@ -24,7 +24,7 @@ class RoleApi(Resource):
         parser.add_argument("recurse", type=inputs.boolean, default=False)
         parser.add_argument("archived", type=inputs.boolean)
         args = parser.parse_args()
-        args = dict((k, v) for k, v in args.iteritems() if v is not None)
+        args = dict((k, v) for k, v in args.items() if v is not None)
 
         role = Role.query.get_or_404(role_id)
         response[API_ENVELOPE] = marshal(role, role_fields)
@@ -62,7 +62,7 @@ class RoleApi(Resource):
         changes = parser.parse_args(strict=True)
 
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         role = Role.query.get_or_404(role_id)
 
@@ -140,7 +140,7 @@ class RoleApi(Resource):
             changes[
                 "min_half_hours_between_shifts"] = min_half_hours_between_shifts
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             if value is not None:
                 try:
                     setattr(role, change, value)

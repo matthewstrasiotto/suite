@@ -17,7 +17,7 @@ class OrganizationWorkersApi(Resource):
         parser.add_argument("filter_by_location_id", type=int)
         parser.add_argument("filter_by_role_id", type=int)
         args = parser.parse_args()
-        args = dict((k, v) for k, v in args.iteritems() if v is not None)
+        args = dict((k, v) for k, v in args.items() if v is not None)
 
         workers_query = select([User.email, User.name, Location.id, Location.name, Role.id, Role.name, RoleToUser.user_id, RoleToUser.archived]) \
             .where(RoleToUser.user_id == User.id) \

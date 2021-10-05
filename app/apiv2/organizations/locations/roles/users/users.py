@@ -23,7 +23,7 @@ class RoleMembersApi(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("archived", type=inputs.boolean)
         parameters = parser.parse_args(strict=True)
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         response = {

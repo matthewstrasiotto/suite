@@ -21,7 +21,7 @@ class ScheduleTimeclocksApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         # get schedule object
@@ -40,6 +40,5 @@ class ScheduleTimeclocksApi(Resource):
 
         return {
             API_ENVELOPE:
-            map(lambda timeclock: marshal(timeclock, timeclock_fields),
-                timeclocks.all())
+            [marshal(timeclock, timeclock_fields) for timeclock in timeclocks.all()]
         }

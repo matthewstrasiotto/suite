@@ -35,7 +35,7 @@ class PreferenceApi(Resource):
         changes = parser.parse_args(strict=True)
 
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
         p = Preference.query.filter(
             Preference.user_id == user_id,
             Preference.schedule_id == schedule_id).first()
@@ -55,7 +55,7 @@ class PreferenceApi(Resource):
 
             changes["preference"] = preference
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             if change == "preference":
                 value = json.dumps(value)
 

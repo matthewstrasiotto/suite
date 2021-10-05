@@ -29,7 +29,7 @@ class TimeOffRequestsApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         org = Organization.query.get_or_404(org_id)
@@ -98,8 +98,7 @@ class TimeOffRequestsApi(Resource):
 
         return {
             API_ENVELOPE:
-            map(lambda time_off_request: marshal(time_off_request, time_off_request_fields),
-                time_off_requests.all())
+            [marshal(time_off_request, time_off_request_fields) for time_off_request in time_off_requests.all()]
         }
 
     @verify_org_location_role_user
@@ -117,7 +116,7 @@ class TimeOffRequestsApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         org = Organization.query.get(org_id)

@@ -21,7 +21,7 @@ class RecurringShiftsApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         recurring_shifts_query = RecurringShift.query.filter_by(
@@ -37,8 +37,7 @@ class RecurringShiftsApi(Resource):
 
         return {
             constants.API_ENVELOPE:
-            map(lambda recurring_shift: marshal(recurring_shift, recurring_shift_fields),
-                recurring_shifts_query.all())
+            [marshal(recurring_shift, recurring_shift_fields) for recurring_shift in recurring_shifts_query.all()]
         }
 
     @verify_org_location_role

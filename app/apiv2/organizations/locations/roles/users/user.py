@@ -153,7 +153,7 @@ class RoleMemberApi(Resource):
 
         # Filter out null values
         changes = parser.parse_args(strict=True)
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         rtu = RoleToUser.query.filter_by(
             user_id=user_id, role_id=role_id).first()
@@ -242,7 +242,7 @@ class RoleMemberApi(Resource):
 
             g.current_user.track_event("modified_working_hours")
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             if value is not None:
                 try:
                     setattr(rtu, change, value)

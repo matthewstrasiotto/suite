@@ -37,7 +37,7 @@ class ShiftApi(Resource):
         changes = parser.parse_args(strict=True)
 
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         shift = Shift2.query.get(shift_id)
         shift_copy = deepcopy(shift)
@@ -202,7 +202,7 @@ class ShiftApi(Resource):
                     Shift2.MAX_DESCRIPTION_LENGTH
                 }, 400
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             try:
                 setattr(shift, change, value)
                 db.session.commit()

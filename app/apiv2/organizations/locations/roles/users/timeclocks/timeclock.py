@@ -43,7 +43,7 @@ class TimeclockApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
         changes = {}
 
@@ -149,7 +149,7 @@ class TimeclockApi(Resource):
         if "stop" in parameters:
             changes["stop"] = stop.isoformat()
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             try:
                 setattr(timeclock, change, value)
                 db.session.commit()

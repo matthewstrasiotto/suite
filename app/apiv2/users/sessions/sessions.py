@@ -9,10 +9,10 @@ class SessionsApi(Resource):
     def get(self, user_id):
         user = User.query.get_or_404(user_id)
         data = user.get_all_sessions()
-        for key in data.keys():
+        for key in list(data.keys()):
             data[key]["key"] = key
 
-        return {API_ENVELOPE: data.values()}, 200
+        return {API_ENVELOPE: list(data.values())}, 200
 
     @permission_self
     def delete(self, user_id):

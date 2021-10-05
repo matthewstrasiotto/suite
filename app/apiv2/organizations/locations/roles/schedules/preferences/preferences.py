@@ -23,9 +23,7 @@ class PreferencesApi(restful.Resource):
         }
 
         preferences = Preference.query.filter_by(schedule_id=schedule_id).all()
-        response[API_ENVELOPE] = map(
-            lambda preference: marshal(preference, preference_fields),
-            preferences)
+        response[API_ENVELOPE] = [marshal(preference, preference_fields) for preference in preferences]
 
         return response
 

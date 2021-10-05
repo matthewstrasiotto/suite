@@ -9,7 +9,7 @@ class PlansApi(Resource):
     def get(self):
         # Flatten dict to an array to match rest of api style
         output = []
-        for plan_id, value in plans.iteritems():
+        for plan_id, value in plans.items():
             clean_plan = {"id": plan_id}
             for key in PLAN_PUBLIC_KEYS:
                 clean_plan[key] = value.get(key)

@@ -20,9 +20,7 @@ class LocationManagersApi(Resource):
         }
 
         location = Location.query.get_or_404(location_id)
-        response[API_ENVELOPE] = map(
-            lambda manager: marshal(manager, user_fields),
-            location.managers.all())
+        response[API_ENVELOPE] = [marshal(manager, user_fields) for manager in location.managers.all()]
 
         return response
 

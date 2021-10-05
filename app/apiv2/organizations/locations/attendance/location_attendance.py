@@ -166,7 +166,7 @@ class LocationAttendanceApi(Resource):
 
         # create a dict with keys for each day of the week needed
         delta = end_local - start_local
-        for x in xrange(delta.days + 1):
+        for x in range(delta.days + 1):
             data[(start_local + datetime.timedelta(days=x)
                   ).strftime(iso_date)] = {}
 
@@ -335,6 +335,6 @@ class LocationAttendanceApi(Resource):
 
         # remove user index to flatten
         for key in data:
-            data[key] = data[key].values()
+            data[key] = list(data[key].values())
 
-        return {API_ENVELOPE: data, "summary": summary.values()}
+        return {API_ENVELOPE: data, "summary": list(summary.values())}

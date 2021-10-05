@@ -45,7 +45,7 @@ class ScheduleApi(Resource):
         changes = parser.parse_args(strict=True)
 
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         original_state = schedule.state
 
@@ -224,7 +224,7 @@ class ScheduleApi(Resource):
 
                 schedule.transition_to_unpublished()
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             try:
                 setattr(schedule, change, value)
                 db.session.commit()

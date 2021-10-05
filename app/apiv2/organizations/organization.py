@@ -42,7 +42,7 @@ class OrganizationApi(Resource):
 
         changes = parser.parse_args(strict=True)
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         # Throw 403 if non-sudo tries to update one of these.
         # It's a patch, not update, so non-sudo should not attempt this.
@@ -98,7 +98,7 @@ class OrganizationApi(Resource):
 
             changes["paid_until"] = paid_until.isoformat()
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             if value is not None:
                 try:
                     setattr(org, change, value)

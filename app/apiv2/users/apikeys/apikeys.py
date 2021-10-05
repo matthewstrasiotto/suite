@@ -15,7 +15,7 @@ class ApiKeysApi(Resource):
         apikeys = ApiKey.query.filter_by(user_id=user_id).all()
         return {
             API_ENVELOPE:
-            map(lambda apikey: marshal(apikey, api_key_fields), apikeys)
+            [marshal(apikey, api_key_fields) for apikey in apikeys]
         }
 
     def post(self, user_id):

@@ -34,7 +34,7 @@ class ShiftsApi(Resource):
         )  # Strict breaks calls from parent methods? Sigh.
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         default_tz = get_default_tz()
@@ -123,7 +123,7 @@ class ShiftsApi(Resource):
 
         output = {
             API_ENVELOPE:
-            map(lambda shift: marshal(shift, shift_fields), shifts)
+            [marshal(shift, shift_fields) for shift in shifts]
         }
 
         if parameters.get("include_summary"):
@@ -132,7 +132,7 @@ class ShiftsApi(Resource):
             for shift in shifts:
                 user_id = shift.user_id if shift.user_id else 0
 
-                if user_id in users_summary.keys():
+                if user_id in list(users_summary.keys()):
                     users_summary[user_id]["shifts"] += 1
                     users_summary[user_id]["minutes"] += int(
                         (shift.stop - shift.start).total_seconds() / 60)
@@ -154,7 +154,7 @@ class ShiftsApi(Resource):
                         int((shift.stop - shift.start).total_seconds() / 60)
                     }
 
-            output["summary"] = users_summary.values()
+            output["summary"] = list(users_summary.values())
 
         return output
 
@@ -174,7 +174,7 @@ class ShiftsApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         default_tz = get_default_tz()

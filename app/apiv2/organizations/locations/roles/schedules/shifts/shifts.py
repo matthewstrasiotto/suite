@@ -32,7 +32,7 @@ class ScheduleShiftsApi(Resource):
         parameters = parser.parse_args()
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         # claimable_by_user must be the only parameter
@@ -58,7 +58,7 @@ class ScheduleShiftsApi(Resource):
                 .order_by(asc(Shift2.start)) \
                 .all()
 
-            shifts = map(lambda shift: marshal(shift, shift_fields), shifts)
+            shifts = [marshal(shift, shift_fields) for shift in shifts]
 
             Shifts2Cache.set(schedule_id, shifts)
 
@@ -95,8 +95,7 @@ class ScheduleShiftsApi(Resource):
                     shifts, role_id, parameters["claimable_by_user"], schedule)
 
         if parameters.get("filter_by_published"):
-            shifts = filter(lambda shift: shift.get("published") == True,
-                            shifts)
+            shifts = [shift for shift in shifts if shift.get("published") == True]
 
         result = {
             API_ENVELOPE: shifts,
@@ -111,7 +110,7 @@ class ScheduleShiftsApi(Resource):
                     iso8601.parse_date(shift.get("stop")) - iso8601.parse_date(
                         shift.get("start"))).total_seconds() / 60)
 
-                if user_id in users_summary.keys():
+                if user_id in list(users_summary.keys()):
                     users_summary[user_id]["shifts"] += 1
                     users_summary[user_id]["minutes"] += duration
                 else:
@@ -127,7 +126,7 @@ class ScheduleShiftsApi(Resource):
                         "minutes": duration,
                     }
 
-            result["summary"] = users_summary.values()
+            result["summary"] = list(users_summary.values())
 
         return result
 

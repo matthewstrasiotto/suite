@@ -21,7 +21,7 @@ class SchedulesApi(Resource):
         parameters = parser.parse_args(strict=True)
 
         # Filter out null values
-        parameters = dict((k, v) for k, v in parameters.iteritems()
+        parameters = dict((k, v) for k, v in parameters.items()
                           if v is not None)
 
         response = {
@@ -38,8 +38,7 @@ class SchedulesApi(Resource):
                 ) \
                 .all()
 
-            schedules = map(
-                lambda schedule: marshal(schedule, schedule_fields), schedules)
+            schedules = [marshal(schedule, schedule_fields) for schedule in schedules]
             Schedules2Cache.set(role_id, schedules)
 
         default_tz = get_default_tz()
@@ -56,11 +55,7 @@ class SchedulesApi(Resource):
                 start = (start + start.utcoffset()).replace(tzinfo=default_tz)
 
             # run a filter to only keep schedules that occur after start
-            schedules = filter(
-                lambda x: \
-                    iso8601.parse_date(x.get("start")).replace(tzinfo=default_tz) >= start,
-                    schedules
-                )
+            schedules = [x for x in schedules if iso8601.parse_date(x.get("start")).replace(tzinfo=default_tz) >= start]
 
         if "end" in parameters:
             try:
@@ -73,11 +68,7 @@ class SchedulesApi(Resource):
             else:
                 end = (end + end.utcoffset()).replace(tzinfo=default_tz)
 
-            schedules = filter(
-                lambda x: \
-                    iso8601.parse_date(x.get("start")).replace(tzinfo=default_tz) < end,
-                    schedules
-                )
+            schedules = [x for x in schedules if iso8601.parse_date(x.get("start")).replace(tzinfo=default_tz) < end]
 
         response["data"] = schedules
         return response

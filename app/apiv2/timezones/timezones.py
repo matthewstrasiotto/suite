@@ -11,5 +11,5 @@ class TimezonesApi(Resource):
 
         return {
             API_ENVELOPE:
-            map(lambda timezone: {"name": timezone}, pytz.all_timezones)
+            [{"name": timezone} for timezone in pytz.all_timezones]
         }

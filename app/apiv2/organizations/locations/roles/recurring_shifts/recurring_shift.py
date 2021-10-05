@@ -43,7 +43,7 @@ class RecurringShiftApi(Resource):
         changes = parser.parse_args()
 
         # Filter out null values
-        changes = dict((k, v) for k, v in changes.iteritems() if v is not None)
+        changes = dict((k, v) for k, v in changes.items() if v is not None)
 
         recurring_shift = RecurringShift.query.get_or_404(recurring_shift_id)
 
@@ -115,7 +115,7 @@ class RecurringShiftApi(Resource):
                     "Recurring shift overlaps with an existing recurring shift"
                 }, 400
 
-        for change, value in changes.iteritems():
+        for change, value in changes.items():
             try:
                 setattr(recurring_shift, change, value)
                 db.session.commit()
