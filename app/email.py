@@ -81,9 +81,9 @@ def _send_email(self, to, subject, html_body):
                 'type': 'to'
             }]
         }
-        client.messages.send(message=message, async=False)
+        client.messages.send(message=message)
 
-    except mandrill.Error, e:
+    except mandrill.Error as e:
         # Mandrill errors are thrown as exceptions
         # and they can include things like "out of credits"
         current_app.logger.exception(
