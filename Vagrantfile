@@ -25,6 +25,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if !Vagrant.has_plugin? 'vagrant-vbguest'
     fail_with_message "vagrant-vbgues missing, please install the plugin with this command:\nvagrant plugin install vagrant-vbguest"
   end
+  # Dont try to reconcile guest addition versions
+  config.vbguest.auto_update = false
 
   config.vm.synced_folder ".", "/vagrant"
   config.vm.provider :virtualbox do |vb|
