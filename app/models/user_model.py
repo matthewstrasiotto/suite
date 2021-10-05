@@ -626,7 +626,7 @@ class User(UserMixin, db.Model):
         send_email(self.email, subject, html_body)
 
     @staticmethod
-    @login_manager.token_loader
+    @login_manager.request_loader
     def load_session_token(token):
         """Load cookie session"""
         s = Serializer(current_app.config["SECRET_KEY"],
