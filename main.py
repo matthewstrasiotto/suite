@@ -19,9 +19,6 @@ manager.add_command("db", MigrateCommand)
 manager.add_command("runserver", Server(host="0.0.0.0", port=80))
 manager.add_command("runtestserver", Server(host="127.0.0.1", port=8080))
 
-# Set flask-restful to be utf-8
-reload(sys)
-sys.setdefaultencoding("utf-8")
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
