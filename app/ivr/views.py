@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from flask import url_for, request, current_app, abort
-from twilio.util import RequestValidator
+from twilio.request_validator import RequestValidator
 import twilio.twiml
 import phonenumbers
 
