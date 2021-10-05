@@ -11,11 +11,11 @@ from flask.ext.redis import Redis
 from celery import Celery
 import phonenumbers
 
-from config import config  # pylint: disable=relative-import
-import loader  # pylint: disable=relative-import
-import stylesheets  # pylint: disable=relative-import
+from .config import config  # pylint: disable=relative-import
+from . import loader  # pylint: disable=relative-import
+from . import stylesheets  # pylint: disable=relative-import
 # yapf: disable
-from helpers import date_duration, sorted_sessions  # pylint: disable=relative-import
+from .helpers import date_duration, sorted_sessions  # pylint: disable=relative-import
 # yapf: enable
 
 bootstrap = Bootstrap()

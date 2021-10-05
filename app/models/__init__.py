@@ -13,5 +13,5 @@ for filename in os.listdir(folder):
         " ", "")
 
     # yapf: disable
-    exec ("from %s import %s" % (module, classname)) # pylint: disable=exec-used
+    exec ("from . %s import %s" % (module, classname)) # pylint: disable=exec-used
     # yapf: enable
