@@ -7,8 +7,8 @@ from sqlalchemy import ForeignKey, and_, or_
 from app import db, constants
 from app.helpers import normalize_to_midnight, get_default_tz
 
-import schedule2_model  # pylint: disable=relative-import
-import organization_model  # pylint: disable=relative-import
+from . import schedule2_model  # pylint: disable=relative-import
+from . import organization_model  # pylint: disable=relative-import
 from app.models.location_model import Location
 from app.models.role_model import Role
 from app.models.role_to_user_model import RoleToUser

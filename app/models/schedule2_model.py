@@ -8,10 +8,10 @@ from app.caches import Schedules2Cache, Shifts2Cache
 from app.helpers import verify_days_of_week_struct
 from app import db
 
-import recurring_shift_model  # pylint: disable=relative-import
-import shift2_model  # pylint: disable=relative-import
-import user_model  # pylint: disable=relative-import
-import organization_model  # pylint: disable=relative-import
+from . import recurring_shift_model  # pylint: disable=relative-import
+from . import shift2_model  # pylint: disable=relative-import
+from . import user_model  # pylint: disable=relative-import
+from . import organization_model  # pylint: disable=relative-import
 from app.models.location_model import Location
 from app.models.role_model import Role
 from app.models.role_to_user_model import RoleToUser

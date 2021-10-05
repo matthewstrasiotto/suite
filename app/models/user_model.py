@@ -22,8 +22,8 @@ from app.email import send_email
 from app.limiters import UserActivationReminderLimiter, PingLimiter
 from app.sms import send_sms
 
-import organization_model  # pylint: disable=relative-import
-import schedule2_model  # pylint: disable=relative-import
+from . import organization_model  # pylint: disable=relative-import
+from . import schedule2_model  # pylint: disable=relative-import
 from app.models.location_model import Location
 from app.models.role_model import Role
 from app.models.role_to_user_model import RoleToUser

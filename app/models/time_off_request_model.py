@@ -6,8 +6,8 @@ from sqlalchemy import ForeignKey, and_, or_
 from app import db
 from app.caches import Shifts2Cache
 
-import schedule2_model  # pylint: disable=relative-import
-import shift2_model  # pylint: disable=relative-import
+from . import schedule2_model  # pylint: disable=relative-import
+from . import shift2_model  # pylint: disable=relative-import
 from app.models.role_to_user_model import RoleToUser
 
 

@@ -8,9 +8,9 @@ from app.caches import Shifts2Cache
 from app.helpers import get_default_tz, timespans_overlap
 from app import db, constants
 
-import schedule2_model  # pylint: disable=relative-import
-import organization_model  # pylint: disable=relative-import
-import shift2_model  # pylint: disable=relative-import
+from . import schedule2_model  # pylint: disable=relative-import
+from . import organization_model  # pylint: disable=relative-import
+from . import shift2_model  # pylint: disable=relative-import
 from app.models.location_model import Location
 from app.models.role_model import Role
 

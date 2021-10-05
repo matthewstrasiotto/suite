@@ -7,7 +7,7 @@ from app import db
 from app.constants import DAYS_OF_WEEK, WEEK_LENGTH
 from app.plans import flex_plans, boss_plans
 
-import user_model  # pylint: disable=relative-import
+from . import user_model  # pylint: disable=relative-import
 from app.models.location_model import Location
 from app.models.role_model import Role
 from app.models.role_to_user_model import RoleToUser
