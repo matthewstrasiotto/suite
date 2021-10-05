@@ -8,6 +8,7 @@ celery-server:
 build:
 	bash build.sh
 dev-requirements:
+	source /vagrant/vagrant-venv/bin/activate
 	pip freeze > requirements.txt
 db-migrate:
 	python main.py db migrate
