@@ -2,13 +2,13 @@
 dev:
 	bash dev.sh
 dev-server:
-	sudo su root -c 'source /vagrant/vagrant-venv/bin/activate && cd /vagrant && export ENV="dev" && (make celery-server &) &&python main.py runserver'
+	sudo su root -c 'source /vagrant-venv/bin/activate && cd /vagrant && export ENV="dev" && (make celery-server &) &&python main.py runserver'
 celery-server:
 	celery -A main.celery worker
 build:
 	bash build.sh
 dev-requirements:
-	source /vagrant/vagrant-venv/bin/activate
+	source /vagrant-venv/bin/activate
 	pip freeze > requirements.txt
 db-migrate:
 	python main.py db migrate

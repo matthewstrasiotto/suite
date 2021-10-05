@@ -50,14 +50,17 @@ echo 'export PYTHONPATH="/vagrant/"' >> /etc/profile
 
 # Get some virtualenv shit going all up in here
 pip install virtualenv
-echo "source /vagrant/vagrant-venv/bin/activate" >> $HOME/.bashrc
-echo "source /vagrant/vagrant-venv/bin/activate" >> /home/vagrant/.bashrc
+echo "source /vagrant-venv/bin/activate" >> $HOME/.bashrc
+echo "source /vagrant-venv/bin/activate" >> /home/vagrant/.bashrc
 
 # Install cron job
 echo '* * * * * root curl --user staffjoydev: http://suite.local/api/v2/internal/cron/' >> /etc/crontab
 
 cd /vagrant/ && rm -rf vagrant-venv && virtualenv vagrant-venv
-source /vagrant/vagrant-venv/bin/activate && export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH" && \
+
+rm -rf /vagrant-venv && virtualenv /vagrant-venv
+
+source /vagrant-venv/bin/activate && export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH" && \
   export ENV="dev" && cd /vagrant/ && \
   make build && \
   #make dev-requirements && \
