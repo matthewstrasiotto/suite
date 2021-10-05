@@ -3,7 +3,7 @@ import os
 from collections import OrderedDict
 
 from app.main.case_studies.config import study_config
-from flask.ext.login import current_user
+from flask_login import current_user
 
 
 def studies_summary():

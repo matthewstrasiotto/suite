@@ -3,7 +3,7 @@ import json
 
 from flask import render_template, make_response, current_app, \
     flash, url_for, redirect, jsonify, Response
-from flask.ext.login import current_user, login_required
+from flask_login import current_user, login_required
 
 from app.main import main
 from app.models import User

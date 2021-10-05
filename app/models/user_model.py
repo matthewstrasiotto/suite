@@ -13,7 +13,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from sqlalchemy import select
 from flask import current_app, render_template, copy_current_request_context, \
     request
-from flask.ext.login import UserMixin
+from flask_login import UserMixin
 
 from app import db, login_manager
 from app.constants import SECONDS_PER_HOUR, SECONDS_PER_DAY

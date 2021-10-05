@@ -2,7 +2,7 @@ import os
 
 from flask import render_template, make_response, \
     abort, jsonify
-from flask.ext.login import current_user, login_required
+from flask_login import current_user, login_required
 
 from app.myschedules import myschedules
 from app.models import Organization, Location, RoleToUser, Role

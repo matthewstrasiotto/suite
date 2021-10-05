@@ -1,8 +1,8 @@
 import os
 import sys
 
-from flask.ext.script import Manager, Server, Shell
-from flask.ext.migrate import Migrate, MigrateCommand, upgrade
+from flask_script import Manager, Server, Shell
+from flask_migrate import Migrate, MigrateCommand, upgrade
 
 from app import create_app, db, cache, create_celery_app
 from app.caches import SessionCache

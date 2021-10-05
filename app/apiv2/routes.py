@@ -1,6 +1,6 @@
 from flask import g, request
 from flask_restful import abort, marshal, Resource
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from app.apiv2.marshal import user_fields
 from app.models import User, ApiKey
