@@ -34,5 +34,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
   end
 
-  config.vm.provision "shell", path: "vagrant.sh"
+  config.vm.provision "shell", path: "vagrant/vagrant.sh"
 end
