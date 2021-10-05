@@ -6,7 +6,7 @@ import random
 
 import hmac
 import phonenumbers
-import unirest
+#  import unirest
 import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
@@ -151,7 +151,9 @@ class User(UserMixin, db.Model):
             org = organization_model.Organization.query.get(org_id)
             if org is not None:
                 data["companies"].append(org.intercom_settings())
-
+        
+        # Removed because I can't resolve unirest, and don't care about intercom
+        """
         unirest.post(
             "https://api.intercom.io/users",
             params=json.dumps(data),
@@ -159,6 +161,7 @@ class User(UserMixin, db.Model):
             auth=(current_app.config.get("INTERCOM_ID"),
                   current_app.config.get("INTERCOM_API_KEY"), ),
             callback=async_callback, )
+        """
         return
 
     def track_event(self, event):
@@ -197,6 +200,8 @@ class User(UserMixin, db.Model):
             "event_name": event,
         }
 
+        # Removed because I can't resolve unirest, and don't care about intercom
+        """
         unirest.post(
             "https://api.intercom.io/events",
             params=json.dumps(data),
@@ -204,6 +209,7 @@ class User(UserMixin, db.Model):
             auth=(current_app.config.get("INTERCOM_ID"),
                   current_app.config.get("INTERCOM_API_KEY"), ),
             callback=async_callback, )
+        """
         return
 
     def verify_password(self, password):
