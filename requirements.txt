@@ -64,7 +64,7 @@ requests==2.9.1
 six==1.10.0
 SQLAlchemy==1.0.12
 stripe==1.29.1
-twilio==5.4.0
+twilio==7.0.0
 visitor==0.1.2
 webassets==0.11.1
 Werkzeug==0.11.4
