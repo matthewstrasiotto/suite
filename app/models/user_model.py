@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from sqlalchemy import select
 from flask import current_app, render_template, copy_current_request_context, \
-    request
+    request, url_for
 from flask_login import UserMixin
 
 from app import db, login_manager
@@ -563,6 +563,11 @@ class User(UserMixin, db.Model):
                             user=user,
                             token=token), True)
 
+        current_app.logger.info(
+        f"""
+        User {user} created, with token {token}.
+        Visit {url_for('auth.activate_account', token = token, _external = True )}
+        """) 
         UserActivationReminderLimiter.mark_sent(user)
 
     def generate_api_token(self, expiration=None):
