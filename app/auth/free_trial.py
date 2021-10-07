@@ -96,12 +96,8 @@ def provision(form):
     user.flush_associated_shift_caches()
 
     # Send activation email
-    token = user.generate_confirmation_token(trial=True)
-    user.send_email("[Action Required] Activate Your Free Trial",
-                    render_template(
-                        "email/confirm-trial.html", user=user, token=token),
-                    True)
 
+    user.send_activation_email(user)
     # Create an org
     organization = Organization(
         name=form.company_name.data,
