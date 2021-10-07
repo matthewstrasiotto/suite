@@ -62,11 +62,11 @@ def date_duration(date_obj):
 
 def sorted_sessions(sessions):
     """takes sessions dictionary and returns a sorted list"""
-    for key in sessions.keys():
+    for key in list(sessions.keys()):
         sessions[key]["key"] = key
 
     return sorted(
-        sessions.values(),
+        list(sessions.values()),
         key=lambda session: session["last_used"],
         reverse=True)
 
