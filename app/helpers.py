@@ -78,7 +78,7 @@ def verify_days_of_week_struct(week, binary=False):
         return False
 
     # Each day must be a list of ints
-    for _, v in week.iteritems():
+    for _, v in week.items():
         if not isinstance(v, list):
             return False
 

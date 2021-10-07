@@ -18,7 +18,7 @@
                 <ul>
                     <li><a href="https://blog.staffjoy.com">Staffjoy Blog</a></li>
                     <li>
-                        {% for key, link in config.SOCIAL.iteritems() %}
+                        {% for key, link in config.SOCIAL.items() %}
                         <a href="{{ link }}" class="btn btn-social-icon btn-{{ key }} btn-xs"><i class="fa fa-{{ key }}"></i></a>
                         {% endfor %}
                     </li>
