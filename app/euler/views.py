@@ -34,9 +34,9 @@ def ich_templates():
     output = {}
     for filename in os.listdir(template_folder):
         name = os.path.splitext(filename)[0]
-        f = file(template_folder + filename)
-        template = f.read()
-
-        output[name] = template
+        
+        with open(template_folder + filename) as f:
+            template = f.read()
+            output[name] = template
 
     return jsonify(output)

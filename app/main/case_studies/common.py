@@ -36,7 +36,12 @@ def study(slug):
 
 def load_body(sourcefile):
     """ Loads the markdown source for a case study adn returns HTML"""
-    f = file("%s/source/%s" % (os.path.dirname(os.path.abspath(__file__)),
-                               sourcefile))
+    with open("%s/source/%s" % (os.path.dirname(os.path.abspath(__file__)),
+        sourcefile)) as f:
 
-    return markdown.markdown(f.read())
+        markdown_src = f.read()
+
+
+
+
+    return markdown.markdown(markdown_src)
