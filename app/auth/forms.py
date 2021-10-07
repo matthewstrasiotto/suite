@@ -255,7 +255,8 @@ class ActivateForm(Form):
                 message="You must agree to these terms to create or activate an account."
             )
         ])
-    recaptcha = RecaptchaField()
+    # TODO: Uncomment this once you actually fix your recaptcha setup
+    #  recaptcha = RecaptchaField()
     submit = SubmitField("Submit")
 
     def validate_username(self, field):
