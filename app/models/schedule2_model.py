@@ -184,8 +184,9 @@ class Schedule2(db.Model):
             role_id=role_id,
             start=start,
             stop=stop,
-            state=state,
-            demand=demand, )
+            state = state, 
+            demand= bytes(demand,'utf8')
+            )
 
         db.session.add(schedule)
         db.session.commit()
