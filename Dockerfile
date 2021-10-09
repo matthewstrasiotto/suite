@@ -10,6 +10,7 @@ RUN . /build/00_su_change_mirror.sh
 
 RUN cd /build \
       && apt-get update \
+      && bash 001_su_deps.sh \
       && bash 01_su_python.sh \
       && bash 03_su_nodejs.sh \
       && bash 050_su_config_env.sh

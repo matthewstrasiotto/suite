@@ -6,10 +6,9 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 apt-get update --yes --force-yes
 
 apt-get install --yes --force-yes \
-  build-essential curl redis-server \
+  redis-server \
   mysql-server \
-  libmysqlclient-dev default-libmysqlclient-dev \
-  libffi-dev libssl-dev
+  libmysqlclient-dev default-libmysqlclient-dev 
 
 printf "[client]\nuser = root\npassword = bacon" >> ~/.my.cnf
 
