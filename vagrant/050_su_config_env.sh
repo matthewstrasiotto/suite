@@ -5,7 +5,7 @@
 su vagrant -l -c 'npm config set prefix ~/npm'
 echo 'export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH"' >> /home/vagrant/.bashrc
 echo 'export ENV="dev"' >> /etc/profile
-echo 'export PYTHONPATH="/vagrant/"' >> /etc/profile
+echo 'export PYTHONPATH="/app/"' >> /etc/profile
 
 # Get some virtualenv shit going all up in here
 pip install virtualenv

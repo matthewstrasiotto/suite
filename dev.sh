@@ -6,7 +6,7 @@ vagrant up
 # 3) Build the files
 # 4) run the dev server
 
-vagrant ssh -c 'source /_virtualenv/bin/activate && export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH" && export ENV="dev" && cd /vagrant/ && make build && make dev-requirements && make db-deploy && make dev-server'
+vagrant ssh -c 'source /_virtualenv/bin/activate && export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH" && export ENV="dev" && cd /app/ && make build && make dev-requirements && make db-deploy && make dev-server'
 
 # When dev server crashes or process is ended, shut down the VM
 vagrant halt
