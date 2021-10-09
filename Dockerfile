@@ -33,11 +33,15 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
       && ln -s /conf/nginx-app.conf /etc/nginx/sites-enabled/ \
       && ln -s /conf/supervisor-app.conf /etc/supervisor/conf.d/
 
-RUN pip install uwsgi
+RUN apt-get install --yes python-is-python3
 
 # Add and install Python modules
 ADD requirements.txt /app/requirements.txt
-RUN cd /app; pip install -r requirements.txt
+ADD build.sh /app/build.sh
+
+# USER vagrant
+RUN cd /app; bash build.sh
+# RUN cd /app; pip install -r requirements.txt
 
 # Bundle app source
 ADD . /app
@@ -48,6 +52,8 @@ RUN cd /app/ && make build
 # Expose - note that load balancer terminates SSL
 EXPOSE 80
 
+RUN    ln -s /_virtualenv/bin/celery /usr/local/bin/celery \
+    && ln -s /_virtualenv/bin/uwsgi  /usr/local/bin/uwsgi
 # RUN
 CMD ["supervisord", "-n"]
 

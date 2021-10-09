@@ -11,8 +11,9 @@ apt-get install --yes --force-yes \
   python3-dev \
   python-setuptools \
 
-# easy_install -U pip || curl "$PIP_URL" -o get-pip.py && python3 get-pip.py
+easy_install -U pip || curl "$PIP_URL" -o get-pip.py && python3 get-pip.py
 # rm get-pip.py
+# python -m ensurepip --upgrade
 
 apt-get install --yes --force-yes \
   python3-software-properties \
