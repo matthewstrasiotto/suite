@@ -44,7 +44,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision "shell", 
-    path: "vagrant/change_mirror.sh", 
+    path: "vagrant/00_su_change_mirror.sh", 
     env: { "LOCAL_MIRROR_SUBDOMAIN" => "au" }
+
+  config.vm.provision "shell", path: "vagrant/01_su_python.sh"
+  config.vm.provision "shell", path: "vagrant/02_su_db.sh"
+  config.vm.provision "shell", path: "vagrant/03_su_nodejs.sh"
+  config.vm.provision "shell", path: "vagrant/04_su_docker.sh"
+
+  config.vm.provision "shell", path: "vagrant/050_su_config_env.sh"
+  config.vm.provision "shell", path: "vagrant/052_su_cron_setup.sh"
+  
+
   config.vm.provision "shell", path: "vagrant/vagrant.sh"
 end
