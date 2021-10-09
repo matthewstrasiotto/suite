@@ -8,12 +8,11 @@ apt-get update
 apt-get install --yes --force-yes \
   apt-utils \
   zip unzip \
-  python python-dev \
   python3-dev \
   python-setuptools \
 
-easy_install -U pip || curl "$PIP_URL" -o get-pip.py && python3 get-pip.py
-rm get-pip.py
+# easy_install -U pip || curl "$PIP_URL" -o get-pip.py && python3 get-pip.py
+# rm get-pip.py
 
 apt-get install --yes --force-yes \
   python3-software-properties \
