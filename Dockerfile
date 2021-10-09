@@ -9,10 +9,10 @@ ADD vagrant /build
 RUN . /build/00_su_change_mirror.sh
 
 RUN cd /build \
-      && ls /build \
-      && . 01_su_python.sh \
-      && . 03_su_nodejs.sh \
-      && . 050_su_config_env.sh
+      && apt-get update \
+      && bash 01_su_python.sh \
+      && bash 03_su_nodejs.sh \
+      && bash 050_su_config_env.sh
 
 # setup tools
 # RUN apt-get update --yes --force-yes
