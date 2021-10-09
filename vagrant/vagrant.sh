@@ -4,19 +4,19 @@ set -e
 cd /app/ 
 
 # Cleanup previous venv if exists
-if [ -d vagrant-venv ]; then
-  rm -rf vagrant-venv 
+if [ -d _virtualenv ]; then
+  rm -rf _virtualenv 
   # we don't want a virtualenv inside the project folder
-  # virtualenv vagrant-venv
+  # virtualenv _virtualenv
 fi
 
-if [ -d /vagrant-venv ]; then
-  rm -rf /vagrant-venv 
+if [ -d /_virtualenv ]; then
+  rm -rf /_virtualenv 
 fi
 
-virtualenv /vagrant-venv
+virtualenv /_virtualenv
 
-source /vagrant-venv/bin/activate \
+source /_virtualenv/bin/activate \
   && export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH" \
   && export ENV="dev" \
   && cd /app/ \

@@ -2,7 +2,7 @@
 dev:
 	bash dev.sh
 dev-server:
-	source /vagrant-venv/bin/activate
+	source /_virtualenv/bin/activate
 
 	cd /app
 	export ENV="dev"
@@ -14,7 +14,7 @@ celery-server:
 build:
 	bash build.sh
 dev-requirements:
-	source /vagrant-venv/bin/activate
+	source /_virtualenv/bin/activate
 	pip freeze > requirements.txt
 db-migrate:
 	python main.py db migrate

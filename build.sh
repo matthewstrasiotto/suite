@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-if [ -d /vagrant-venv ]; then
-  source /vagrant-venv/bin/activate
+if [ -d /_virtualenv ]; then
+  source /_virtualenv/bin/activate
 fi
 
 # Setuptools 58 removes use_2to3 support, which some old packages depend on

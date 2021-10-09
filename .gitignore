@@ -50,7 +50,7 @@ variables.sh
 
 # Ignore local vagrant cache
 .vagrant/
-vagrant-venv/
+_virtualenv/
 
 # some stuff from the GAE repo
 #

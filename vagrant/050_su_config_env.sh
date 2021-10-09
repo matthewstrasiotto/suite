@@ -9,5 +9,5 @@ echo 'export PYTHONPATH="/vagrant/"' >> /etc/profile
 
 # Get some virtualenv shit going all up in here
 pip install virtualenv
-echo "source /vagrant-venv/bin/activate" >> $HOME/.bashrc
-echo "source /vagrant-venv/bin/activate" >> /home/vagrant/.bashrc
+echo "source /_virtualenv/bin/activate" >> $HOME/.bashrc
+echo "source /_virtualenv/bin/activate" >> /home/vagrant/.bashrc
