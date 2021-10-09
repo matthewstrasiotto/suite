@@ -8,7 +8,7 @@ fi
 cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
 
-sudo sed -i \
+sed -i \
        -e "s#http://archive#http://${LOCAL_MIRROR_SUBDOMAIN}.archive#" \
        /etc/apt/sources.list
 
