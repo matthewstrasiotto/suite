@@ -16,7 +16,7 @@ services:
       SQLALCHEMY_DATABASE_URI: "mysql://root:bacon@mysqlserver/dev"
       REDIS_HOST: redis
     volumes:
-      - '.:/src'
+      - '.:/app'
     ports:
       - '80:80'
     links:

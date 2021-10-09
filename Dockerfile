@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
-ENV PYTHONPATH $PYTHONPATH:/src/
+ENV PYTHONPATH $PYTHONPATH:/app/
 
 RUN useradd --create-home --shell /bin/bash vagrant
 ADD vagrant /build
@@ -33,14 +33,14 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
 RUN pip install uwsgi
 
 # Add and install Python modules
-ADD requirements.txt /src/requirements.txt
-RUN cd /src; pip install -r requirements.txt
+ADD requirements.txt /app/requirements.txt
+RUN cd /app; pip install -r requirements.txt
 
 # Bundle app source
-ADD . /src
+ADD . /app
 
 
-RUN cd /src/ && make build
+RUN cd /app/ && make build
 
 # Expose - note that load balancer terminates SSL
 EXPOSE 80
