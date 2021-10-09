@@ -7,9 +7,10 @@ services:
     ports:
       - '6379:6379'
   website:
-    build: .
-    args:
-      LOCAL_MIRROR_SUBDOMAIN: "${LOCAL_MIRROR_SUBDOMAIN}"
+    build: 
+      context: .
+      args:
+        LOCAL_MIRROR_SUBDOMAIN: "${LOCAL_MIRROR_SUBDOMAIN}"
     command: supervisord -n
     environment:
       ENV: 'dev'
