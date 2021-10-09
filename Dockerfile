@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+ARG LOCAL_MIRROR_SUBDOMAIN
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONPATH $PYTHONPATH:/app/
 
@@ -8,6 +9,7 @@ ADD vagrant /build
 RUN . /build/00_su_change_mirror.sh
 
 RUN cd /build \
+      && ls /build \
       && . 01_su_python.sh \
       && . 03_su_nodejs.sh \
       && . 050_su_config_env.sh
