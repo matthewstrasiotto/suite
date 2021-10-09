@@ -5,6 +5,13 @@ def fail_with_message(msg)
   fail Vagrant::Errors::VagrantError.new, msg
 end
 
+def fail_without_plugin(plugin)
+  if !Vagrant.has_plugin? plugin
+    fail_with_message "${plugin} missing, please install the plugin with this command:\n" +
+      "vagrant plugin install ${plugin}"
+  end
+end
+
 ip = '192.168.70.70'
 
 VAGRANTFILE_API_VERSION = "2"
@@ -12,19 +19,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/focal64"
   # config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.vm.network :private_network, ip: ip
-  if Vagrant.has_plugin? 'vagrant-hostmanager'
-    config.hostmanager.enabled = true
-    config.hostmanager.manage_host = true
-    config.hostmanager.aliases = [
-      'suite.local',
-    ]
-  else
-    fail_with_message "vagrant-hostmanager missing, please install the plugin with this command:\nvagrant plugin install vagrant-hostmanager"
-  end
 
-  if !Vagrant.has_plugin? 'vagrant-vbguest'
-    fail_with_message "vagrant-vbgues missing, please install the plugin with this command:\nvagrant plugin install vagrant-vbguest"
-  end
+  fail_without_plugin 'vagrant-hostmanager'
+
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.aliases = [
+    'suite.local',
+  ]
+
+  fail_without_plugin 'vagrant-env'
+
+  fail_without_plugin 'vagrant-vbguest'
+
   # Dont try to reconcile guest addition versions
   config.vbguest.auto_update = false
 
