@@ -3,9 +3,10 @@ PIP_URL=https://bootstrap.pypa.io/pip/3.4/get-pip.py
 PIP_URL=https://bootstrap.pypa.io/get-pip.py
 # This file is used by the Vagrantfile to set up the dev environment
 
-sudo apt-get update
+apt-get update
 
-sudo apt-get install --yes --force-yes \
+apt-get install --yes --force-yes \
+  apt-utils \
   zip unzip \
   python python-dev \
   python3-dev \
