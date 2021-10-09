@@ -35,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Dont try to reconcile guest addition versions
   config.vbguest.auto_update = false
 
-  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/app"
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2000"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]

@@ -2,7 +2,13 @@
 dev:
 	bash dev.sh
 dev-server:
-	sudo su root -c 'source /vagrant-venv/bin/activate && cd /vagrant && export ENV="dev" && (make celery-server &) &&python main.py runserver'
+	source /vagrant-venv/bin/activate
+
+	cd /app
+	export ENV="dev"
+	(make celery-server &)
+	python main.py runserver
+
 celery-server:
 	celery -A main.celery worker
 build:

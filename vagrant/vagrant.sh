@@ -1,16 +1,28 @@
 #!/bin/bash
 set -e
 
-cd /vagrant/ && rm -rf vagrant-venv && virtualenv vagrant-venv
+cd /app/ 
 
-rm -rf /vagrant-venv && virtualenv /vagrant-venv
+# Cleanup previous venv if exists
+if [ -d vagrant-venv ]; then
+  rm -rf vagrant-venv 
+  # we don't want a virtualenv inside the project folder
+  # virtualenv vagrant-venv
+fi
+
+if [ -d /vagrant-venv ]; then
+  rm -rf /vagrant-venv 
+fi
+
+virtualenv /vagrant-venv
 
 source /vagrant-venv/bin/activate \
   && export PATH="$PATH:$HOME/npm/bin:/home/vagrant/node_modules/.bin:$PATH" \
   && export ENV="dev" \
-  && cd /vagrant/ \
+  && cd /app/ \
   && make build  \
-  # && make dev-requirements \
   && make db-deploy
-python /vagrant/dev-sudo.py
+  # && make dev-requirements \
+
+python /app/dev-sudo.py
 

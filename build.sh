@@ -1,7 +1,9 @@
 #!/bin/sh
 set -e
 
-source /vagrant-venv/bin/activate
+if [ -d /vagrant-venv ]; then
+  source /vagrant-venv/bin/activate
+fi
 
 # Setuptools 58 removes use_2to3 support, which some old packages depend on
 pip install 'setuptools<58.0.0'
