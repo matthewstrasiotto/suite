@@ -7,8 +7,7 @@ apt-get update --yes --force-yes
 
 apt-get install --yes --force-yes \
   redis-server \
-  mysql-server \
-  libmysqlclient-dev default-libmysqlclient-dev 
+  mysql-server 
 
 printf "[client]\nuser = root\npassword = bacon" >> ~/.my.cnf
 
