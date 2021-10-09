@@ -71,3 +71,7 @@ app/static/stylesheets/*
 
 # artifacts from tests
 .cache/*
+
+
+# dotenv files
+.env
