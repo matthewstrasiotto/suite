@@ -25,13 +25,6 @@ RUN cd /build \
 
 RUN apt-get install --yes --force-yes nginx supervisor
 
-ADD conf /conf
-
-# configuration
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
-      && rm /etc/nginx/sites-enabled/default \
-      && ln -s /conf/nginx-app.conf /etc/nginx/sites-enabled/ \
-      && ln -s /conf/supervisor-app.conf /etc/supervisor/conf.d/
 
 RUN apt-get install --yes python-is-python3
 
@@ -54,6 +47,15 @@ EXPOSE 80
 
 RUN    ln -s /_virtualenv/bin/celery /usr/local/bin/celery \
     && ln -s /_virtualenv/bin/uwsgi  /usr/local/bin/uwsgi
+
+ADD conf /conf
+
+# configuration
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
+      && rm /etc/nginx/sites-enabled/default \
+      && ln -s /conf/nginx-app.conf /etc/nginx/sites-enabled/ \
+      && ln -s /conf/supervisor-app.conf /etc/supervisor/conf.d/
+
 # RUN
 CMD ["supervisord", "-n"]
 
