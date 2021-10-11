@@ -28,7 +28,10 @@ services:
     hostname: suite
   db:
     hostname: mysqlserver
-    image: orchardup/mysql
+    image: mysql:8
     environment:
         MYSQL_ROOT_PASSWORD: bacon
         MYSQL_DATABASE: dev
+    ports:
+      - "127.0.0.1:3306:3306"
+
