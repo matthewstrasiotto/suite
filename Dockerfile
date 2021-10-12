@@ -56,6 +56,9 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
       && ln -s /conf/nginx-app.conf /etc/nginx/sites-enabled/ \
       && ln -s /conf/supervisor-app.conf /etc/supervisor/conf.d/
 
+RUN    apt-get install --yes git \
+    && pip install git+https://github.com/coderanger/supervisor-stdout
+
 # RUN
 CMD ["supervisord", "-n"]
 
