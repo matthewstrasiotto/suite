@@ -1,4 +1,9 @@
 .PHONY: build
+
+db-deploy-docker:
+	sudo docker-compose exec website \
+		bash -c '. /_virtualenv/bin/activate && cd /app && make db-deploy'
+
 dev:
 	bash dev.sh
 dev-server:
